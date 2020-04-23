@@ -1,0 +1,19 @@
+---
+# tasks file for run_app_in_tomcat
+  - name: Ensure tomcat package is present
+    apt:
+      name: tomcat8
+      state: present
+
+  - name: Synchronization of src on the control machine to dest on the remote hosts
+    synchronize:
+      src: /tmp/boxfuse/hello-1.0.war
+      dest: /var/lib/tomcat8/webapps
+
+  - name: Remove useless packages from the cache
+    apt:
+      autoclean: yes
+
+  - name: Remove dependencies that are no longer required
+    apt:
+      autoremove: yes

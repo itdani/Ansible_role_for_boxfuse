@@ -1,0 +1,14 @@
+---
+- name: artifact creation
+  hosts: dev
+  become: yes
+
+  roles:
+   - building_app
+
+- name: run app in tomcat
+  hosts: prod
+  become: yes
+
+  roles:
+   - run_app_in_tomcat
